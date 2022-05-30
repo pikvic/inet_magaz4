@@ -1,5 +1,10 @@
 import sqlite3
 
+CREATE_USERS = '''CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY,
+    username VARCHAR(60) NOT NULL,
+    password VARCHAR(20) NOT NULL
+    )'''
 
 CREATE_CATEGORIES = '''CREATE TABLE IF NOT EXISTS categories (
     id INTEGER PRIMARY KEY,
@@ -26,6 +31,7 @@ INSERT_ITEMS = '''INSERT INTO items (name, price, cat_id) VALUES
 
 conn = sqlite3.connect("db.sqlite3")
 cursor = conn.cursor()
+cursor.execute(CREATE_USERS)
 cursor.execute(CREATE_CATEGORIES)
 cursor.execute(CREATE_ITEMS)
 cursor.execute(INSERT_CATEGORIES)

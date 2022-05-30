@@ -1,6 +1,12 @@
 import sqlite3
 from typing import Iterable
 
+def insert(command: str, params: Iterable = tuple()):
+    conn = sqlite3.connect('db.sqlite3')
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+    cursor.execute(command, params)
+    conn.commit()
 
 def select(command : str, params : Iterable = tuple()):
     conn = sqlite3.connect('db.sqlite3')
